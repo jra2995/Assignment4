@@ -6,13 +6,11 @@ package Assignment4;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 // do not change class name or interface it implements
-public class WordLadderSolver implements Assignment4Interface
-{
+public class WordLadderSolver implements Assignment4Interface {
     // delcare class members here.
 	private Dictionary dictionary;
     // add a constructor for this object. HINT: it would be a good idea to set up the dictionary there
@@ -43,14 +41,14 @@ public class WordLadderSolver implements Assignment4Interface
 	}
     // do not change signature of the method implemented from the interface
     @Override
-    public List<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException 
+    public ArrayList<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException
     {
         // implement this method
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
-    public boolean validateResult(String startWord, String endWord, List<String> wordLadder) 
+    public boolean validateResult(String startWord, String endWord, ArrayList<String> wordLadder)
     {
         throw new UnsupportedOperationException("Not implemented yet!");
     }

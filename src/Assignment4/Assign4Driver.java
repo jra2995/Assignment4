@@ -1,6 +1,6 @@
 package Assignment4;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Assign4Driver
 {
@@ -11,7 +11,7 @@ public class Assign4Driver
 
         try 
         {
-            List<String> result = wordLadderSolver.computeLadder("money", "honey");
+            ArrayList<String> result = wordLadderSolver.computeLadder("money", "honey");
             boolean correct = wordLadderSolver.validateResult("money", "honey", result);
         } 
         catch (NoSuchLadderException e) 

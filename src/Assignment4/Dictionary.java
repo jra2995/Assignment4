@@ -1,46 +1,23 @@
 package Assignment4;
 
-import java.util.List;
-import java.util.Scanner;
-import java.io.FileNotFoundException;
-import java.io.File;
+import java.util.ArrayList;
 
 public class Dictionary {
-	private List<String> dictionary;
+	private ArrayList<String> dictionary;
 	
-	public Dictionary(String filename) {
-		File file = new File(filename);
-		Scanner scan = null;
-		try{
-			scan = new Scanner(file);
-			while(scan.hasNextLine()){
-				String line = scan.nextLine();
-				if(line.charAt(0) != '*'){
-					String word = line.substring(0, 5);
-					dictionary.add(word);
-				}
-			}
-		}
-		catch(FileNotFoundException fnfe){
-			fnfe.printStackTrace();
-			System.err.println("Error - File " + file + " not found.");
-		}
-		finally{
-			if(scan != null){
-				scan.close();
-			}
-		}
+	public Dictionary(ArrayList<String> list) {
+		dictionary = list;
 	}
 	
 	public boolean search(String word){
 		return dictionary.contains(word);
 	}
 	
-	public List<String> getDictionary(){
+	public ArrayList<String> getDictionary(){
 		return dictionary;
 	}
 	
-	public void setDictionary(List<String> newDictionary){
+	public void setDictionary(ArrayList<String> newDictionary){
 		dictionary = newDictionary;
 	}
 }

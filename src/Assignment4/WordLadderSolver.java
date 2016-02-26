@@ -4,15 +4,43 @@
 
 package Assignment4;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 // do not change class name or interface it implements
 public class WordLadderSolver implements Assignment4Interface
 {
     // delcare class members here.
-
+	private Dictionary dictionary;
     // add a constructor for this object. HINT: it would be a good idea to set up the dictionary there
-
+	public WordLadderSolver(String filename){
+		File file = new File(filename);
+		Scanner scan = null;
+		ArrayList<String> list = new ArrayList<String>();
+		try{
+			scan = new Scanner(file);
+			while(scan.hasNextLine()){
+				String line = scan.nextLine();
+				if(line.charAt(0) != '*'){
+					String word = line.substring(0, 5);
+					list.add(word);
+				}
+			}
+		}
+		catch(FileNotFoundException fnfe){
+			fnfe.printStackTrace();
+			System.err.println("Error - File " + file + " not found.");
+		}
+		finally{
+			if(scan != null){
+				scan.close();
+			}
+		}
+		dictionary = new Dictionary(list);
+	}
     // do not change signature of the method implemented from the interface
     @Override
     public List<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException 
@@ -28,4 +56,5 @@ public class WordLadderSolver implements Assignment4Interface
     }
 
     // add additional methods here
+    
 }

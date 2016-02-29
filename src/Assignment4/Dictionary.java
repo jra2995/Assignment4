@@ -43,7 +43,10 @@ public class Dictionary {
 	private static boolean differByOneLetter(String one, String two){
 		for(int index = 0; index < WORD_SIZE; index++){
 			for(char c = LOWERCASE_A; c < ALPHABET_SIZE; c++){
-				String regex = c + one.substring(0, index) + one.substring(index + 1);
+				String regex = one.substring(0, index) + c + one.substring(index + 1, WORD_SIZE);
+				if(regex.length() == 6){
+					regex = regex.substring(0, 5);
+				}
 				if(two.matches(regex)){
 					return true;
 				}

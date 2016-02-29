@@ -13,9 +13,10 @@ import java.util.Scanner;
 public class WordLadderSolver implements Assignment4Interface {
     // delcare class members here.
 	private Dictionary dictionary;
+	private String inputFileName;
     // add a constructor for this object. HINT: it would be a good idea to set up the dictionary there
-	public WordLadderSolver(String filename){
-		File file = new File(filename);
+	public WordLadderSolver(String dictionaryName, String inputName){
+		File file = new File(dictionaryName);
 		Scanner scan = null;
 		ArrayList<String> list = new ArrayList<String>();
 		try{
@@ -38,6 +39,7 @@ public class WordLadderSolver implements Assignment4Interface {
 			}
 		}
 		dictionary = new Dictionary(list);
+		inputFileName = inputName;
 	}
     // do not change signature of the method implemented from the interface
     @Override

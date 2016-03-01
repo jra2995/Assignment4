@@ -38,31 +38,6 @@ public class Dictionary {
 	}
 	
 	/**
-	 * Compares two words (assumed to be in the dictionary, but can be used for other purposes
-	 * and returns a boolean representing whether the words differ by only one letter or not
-	 * @param one the first string to be compared with
-	 * @param two the second string to be compared with
-	 * @return true if the strings differ by only one letter, false otherwise
-	 */
-	public static boolean differByOneLetter(String one, String two){
-		int distance = 0;
-		
-		// Compares characters one at a time, determining the number of letters different in the two words
-    	for(int i = 0; i < WORD_SIZE; i++){
-    		if(one.charAt(i) != two.charAt(i)){
-    			distance++;
-    		}
-    	}
-    	// Based on if the words differ by only one letter, return the desired boolean value
-    	if(distance == 1){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-	}
-	
-	/**
 	 * Searches the dictionary nodes for a particular word and returns if the dictionary contains it
 	 * @param word the word to be looked for in the dictionary
 	 * @return true if the word is in the dictionary's nodes, false otherwise
@@ -106,6 +81,23 @@ public class Dictionary {
 	}
 	
 	/**
+	 * Returns if there exists an edge in the dictionary graph between String one and String two,
+	 * so if they differ by one letter, in other words
+	 * @param one the first string to serve as the node getting outgoing edges from
+	 * @param two the word that might be in the adjacency list of one
+	 * @return true if there is an edge between the two, false otherwise
+	 */
+	public boolean isEdge(String one, String two){
+		ArrayList<String> adjacencyList = getEdgesFrom(one);
+		if(adjacencyList.contains(two)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	/**
 	 * sets the node list of the dictionary to whatever list of words the input parameter has
 	 * @param newDictionary the new list of words for the dictionary to hold as nodes
 	 */
@@ -132,5 +124,30 @@ public class Dictionary {
 			}
 			edges.add(adjacencyList);
 		}
+	}
+	
+	/**
+	 * Compares two words (assumed to be in the dictionary, but can be used for other purposes
+	 * and returns a boolean representing whether the words differ by only one letter or not
+	 * @param one the first string to be compared with
+	 * @param two the second string to be compared with
+	 * @return true if the strings differ by only one letter, false otherwise
+	 */
+	private boolean differByOneLetter(String one, String two){
+		int distance = 0;
+		
+		// Compares characters one at a time, determining the number of letters different in the two words
+    	for(int i = 0; i < WORD_SIZE; i++){
+    		if(one.charAt(i) != two.charAt(i)){
+    			distance++;
+    		}
+    	}
+    	// Based on if the words differ by only one letter, return the desired boolean value
+    	if(distance == 1){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
 	}
 }

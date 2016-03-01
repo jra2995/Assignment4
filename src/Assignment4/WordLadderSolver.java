@@ -65,6 +65,15 @@ public class WordLadderSolver implements Assignment4Interface {
 		// Creates the new dictionary object based off of the input from the dictionary text file
 		dictionary = new Dictionary(list);
 	}
+	
+	/**
+	 * Returns the dictionary object for this particular wordLadderSolver object
+	 * @return the dictionary object for this particular wordLadderSolver object
+	 */
+	public Dictionary getDictionary(){
+		return dictionary;
+	}
+	
     // do not change signature of the method implemented from the interface
     @Override
     /**
@@ -81,9 +90,9 @@ public class WordLadderSolver implements Assignment4Interface {
     	ladder = correctWordLadder(ladder);
     	
     	// If no ladder can be made, i.e. ladder size is 0, throw the no such ladder exception
-    	if(ladder.size() == 0){
+    	if(ladder.size() == 0 || (ladder.size() == 1 && !startWord.equals(endWord))){
     		throw new NoSuchLadderException("A word ladder does not exist for the words " + 
-					startWord + " and " + endWord + ".\n*****");
+					startWord + " and " + endWord + ".\n");
     	}
     	return ladder;
     }
@@ -111,7 +120,7 @@ public class WordLadderSolver implements Assignment4Interface {
     	
     	// Makes sure there is a difference of only one letter between all adjacent words in the word ladder
     	for(int i = 0; i < wordLadder.size() - 1; i++){
-    		if(!differByOne(wordLadder.get(i), wordLadder.get(i + 1))){
+    		if(!dictionary.isEdge(wordLadder.get(i), wordLadder.get(i + 1))){
     			return false;
     		}
     	}
@@ -147,26 +156,37 @@ public class WordLadderSolver implements Assignment4Interface {
     	ladder.add(startWord);
     	
     	// If the start word and end word are off by one letter only, we return a list with the start word and end word
-    	if(Dictionary.differByOneLetter(startWord, endWord)){
+    	if(dictionary.isEdge(startWord, endWord)){
     		ladder.add(endWord);
     		return ladder;
     	}
     	
+    	// Gets all edges from the startWord and sorts them by proximity (fewest letters away from) the endWord
     	ArrayList<String> tempSolutions = dictionary.getEdgesFrom(startWord);
     	tempSolutions = sortByDifferencesAscendingOrder(tempSolutions, endWord);
+    	
+    	// If any of the edges are connected to words that are one letter away from the end word, 
+    	// add the connecting word and end word to the ladder and return the ladder (because we've found a solution)
     	for(int i = 0; i < tempSolutions.size(); i++){
-    		if(differByOne(tempSolutions.get(i), endWord)){
+    		if(dictionary.isEdge(tempSolutions.get(i), endWord)){
     			ladder.add(tempSolutions.get(i));
     			ladder.add(endWord);
     			return ladder;
     		}
     	}
     	
+    	// Cycles through edges one by one looking for words that change letters
     	for(int i = 0; i < tempSolutions.size(); i++){
     		int posChanged = getPositionChanged(tempSolutions.get(i), startWord);
+    		
+    		// If the word to test is not in the current word ladder for solutions, add it to the DFS word ladder
     		if(!currentLadder.contains(tempSolutions.get(i))){
+    			// Recurses using the given word after adding the word to the in process ladder
     			currentLadder.addAll(ladder);
     			ArrayList<String> tempLadder = makeLadder(tempSolutions.get(i), endWord, posChanged, currentLadder);
+    			
+    			// If the ladder has returned from recursion with the last word being the end word, we have a correct 
+    			// ladder that we need to start adding the pieces together with
     			if(tempLadder.get(tempLadder.size() - 1).equals(endWord)){
     				ladder.addAll(tempLadder);
     				return ladder;
@@ -174,24 +194,16 @@ public class WordLadderSolver implements Assignment4Interface {
     		}
     	}
     	
+    	// Return the whole ladder at the end of recursion
     	return ladder;
     }
     
-    private boolean differByOne(String one, String two){
-    	int distance = 0;
-    	for(int i = 0; i < Dictionary.WORD_SIZE; i++){
-    		if(one.charAt(i) != two.charAt(i)){
-    			distance++;
-    		}
-    	}
-    	if(distance == 1){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-    }
-    
+    /**
+     * Checks the first letter position changed between two words and returns the index of that position
+     * @param one the first word to check against
+     * @param two the second word to check against
+     * @return the integer index position that is changed between the two words
+     */
     private int getPositionChanged(String one, String two){
     	for(int i = 0; i < Dictionary.WORD_SIZE; i++){
     		if(one.charAt(i) != two.charAt(i)){
@@ -201,10 +213,21 @@ public class WordLadderSolver implements Assignment4Interface {
     	return -1;
     }
     
+    /**
+     * Sorts an ArrayList in ascending order starting with the word that is closest (has the fewest letters different)
+     * to the string endWord to the word that is the farthest, or most letters different from the string endWord and 
+     * returns the sorted list
+     * @param list the ArrayList to be sorted in ascending order
+     * @param endWord the endWord to compare the words in list to
+     * @return the sorted list in ascending order with respect to differences from endWord
+     */
     private ArrayList<String> sortByDifferencesAscendingOrder(ArrayList<String> list, String endWord){
+    	// Creates a list of integer distances that correspond to the distances of the words in list from endWord
     	ArrayList<Integer> distances = new ArrayList<Integer>();
     	for(int i = 0; i < list.size(); i++){
     		int tempDistance = 0;
+    		
+    		// Counts the number of letters that are different from endWord
     		for(int j = 0; j < Dictionary.WORD_SIZE; j++){
     			if(list.get(i).charAt(j) != endWord.charAt(j)){
     				tempDistance++;
@@ -212,8 +235,13 @@ public class WordLadderSolver implements Assignment4Interface {
     		}
     		distances.add(tempDistance);
     	}
+    	
+    	// Standard bubble sort that sorts both the String list and distances list in O(n^2) time
     	for(int i = 0; i < distances.size(); i++){
     		for(int j = i; j < distances.size(); j++){
+    			
+    			// Sorts in ascending order by using < test, and sorts both integer and String lists by swapping elements
+    			// as appropriate
     			if(distances.get(j) < distances.get(i)){
     				int swapped = distances.get(i);
     				distances.set(i, distances.get(j));
@@ -223,16 +251,30 @@ public class WordLadderSolver implements Assignment4Interface {
     				list.set(j, switched);
     			}
     		}
-    		//list.set(i, distances.get(i) + list.get(i));
     	}
+    	
+    	// Returns the sorted list by this point
     	return list;
     }
     
+    /**
+     * Corrects the word ladder by removing any words from the ladder that are cycles of three
+     * For example, tolls, tills, and tells are a cycle of three because they all have the same position changed between
+     * the three words in sequence, so if a cycle of three comes up in a word ladder, the word in the middle is 
+     * redundant and needs to be removed, or can be removed.
+     * @param ladder the word ladder to be checked and corrected, if necessary
+     * @return the corrected word ladder
+     */
     private ArrayList<String> correctWordLadder(ArrayList<String> ladder){
+    	// Cycles through the entire list to check for cycles of three
     	for(int i = 0; i < ladder.size(); i++){
+    		// If there are at least three words in the word ladder, we have the potential for unnecessary words
     		if(i + 1 < ladder.size() - 1){
     			if(i + 2 < ladder.size() - 1){
-    				if(getPositionChanged(ladder.get(i), ladder.get(i + 1)) == getPositionChanged(ladder.get(i + 1), ladder.get(i + 2))){
+    				// If the position between all three words in a row is the same, remove the middle one
+    				// since it is unnecessary and correct the loop index to account for the removed element from the list
+    				if(getPositionChanged(ladder.get(i), ladder.get(i + 1)) == getPositionChanged(ladder.get(i + 1), 
+    						ladder.get(i + 2))){
     					ladder.remove(i + 1);
     					i--;
     				}

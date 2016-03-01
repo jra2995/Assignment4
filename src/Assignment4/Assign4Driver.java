@@ -54,10 +54,10 @@ public class Assign4Driver
     					}
     					System.out.println("*****");
     				}
-    				else{
+    				/*else{
     					throw new NoSuchLadderException("A word ladder does not exist for the words " + 
     							startWord + " and " + endWord + ".\n*****");
-    				}
+    				}*/
     			}
     		}
     		//ArrayList<String> result = wordLadderSolver.computeLadder("stone", "money");

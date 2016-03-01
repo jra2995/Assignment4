@@ -15,78 +15,139 @@ import java.util.Scanner;
 
 // do not change class name or interface it implements
 public class WordLadderSolver implements Assignment4Interface {
-    // delcare class members here.
-	private static final int WORD_SIZE = 5;
+    // declare class members here.
+	/**
+	 * the dictionary graph containing the words as nodes and edges between words as differences of one letter
+	 * between words
+	 */
 	private Dictionary dictionary;
-    // add a constructor for this object. HINT: it would be a good idea to set up the dictionary there
+    
+	// add a constructor for this object. HINT: it would be a good idea to set up the dictionary there
+	/**
+	 * Makes a new WordLadderSolver capable of solving a word ladder given a dictionary file name as input to 
+	 * initialize the dictionary. Dictionary will only consist of Dictionary.WORD_SIZE letter words, in this case
+	 * @param dictionaryName the file name for the dictionary's nodes to be initialized with 
+	 */
 	public WordLadderSolver(String dictionaryName){
+		// Allows for method-wide access of file and scanner so as to throw no errors and allow for file closing
+		// (It was giving me errors having scanner not initialized outside the try-catch
 		File file = new File(dictionaryName);
 		Scanner scan = null;
 		ArrayList<String> list = new ArrayList<String>();
+		
+		// Initializes scanner and begins to read in the dictionary input from the file if possible
 		try{
 			scan = new Scanner(file);
+			
+			// Reads in the dictionary input from the file
 			while(scan.hasNextLine()){
 				String line = scan.nextLine();
+				
+				// Makes sure that no *'d lines accidently get read in as words from the Stanford dictionary file
 				if(line.charAt(0) != '*'){
-					String word = line.substring(0, 5);
+					String word = line.substring(0, Dictionary.WORD_SIZE);
 					list.add(word);
 				}
 			}
 		}
 		catch(FileNotFoundException fnfe){
+			// If we get here, the dictionary filename was incorrect, or the file is not visible to the program hierarchy
 			fnfe.printStackTrace();
 			System.err.println("Error - File " + file + " not found.");
 		}
 		finally{
+			// Closes the file scanner if it has been read from
 			if(scan != null){
 				scan.close();
 			}
 		}
+		
+		// Creates the new dictionary object based off of the input from the dictionary text file
 		dictionary = new Dictionary(list);
 	}
     // do not change signature of the method implemented from the interface
     @Override
+    /**
+     * Computes a word ladder for a given start word and end word, if possible
+     * @param startWord the start word for the desired word ladder
+     * @param endWord the end word for the desired word ladder
+     * @returns an ArrayList representing the word ladder if possible
+     * @throws NoSuchLadderException if no word ladder can be made between the two start and end words
+     */
     public ArrayList<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException
     {
     	ArrayList<String> ladder = new ArrayList<String>();
     	ladder = makeLadder(startWord, endWord, 0, ladder);
     	ladder = correctWordLadder(ladder);
+    	
+    	// If no ladder can be made, i.e. ladder size is 0, throw the no such ladder exception
+    	if(ladder.size() == 0){
+    		throw new NoSuchLadderException("A word ladder does not exist for the words " + 
+					startWord + " and " + endWord + ".\n*****");
+    	}
     	return ladder;
-        // implement this method
-        //throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     @Override
+    /**
+     * Checks to make sure the wordLadder provided in the parameter list is a valid wordLadder from 
+     * startWord to endWord
+     * @param startWord the start word of the word ladder
+     * @param endWord the end word of the word ladder
+     * @param wordLadder the actual word ladder to be checked for correctness
+     * @returns true if the wordLadder is valid, false otherwise
+     */
     public boolean validateResult(String startWord, String endWord, ArrayList<String> wordLadder)
     {
+    	// Checks to make sure start word of the wordLadder is the same as startWord
     	if(!wordLadder.get(0).equals(startWord)){
     		return false;
     	}
     	
+    	// Checks to make sure end word of the wordLadder is the same as endWord
     	if(!wordLadder.get(wordLadder.size() - 1).equals(endWord)){
     		return false;
     	}
     	
+    	// Makes sure there is a difference of only one letter between all adjacent words in the word ladder
     	for(int i = 0; i < wordLadder.size() - 1; i++){
     		if(!differByOne(wordLadder.get(i), wordLadder.get(i + 1))){
     			return false;
     		}
     	}
         
+    	// If survived all the other checks, it is a valid word ladder
     	return true;
     }
 
     // add additional methods here
+    /**
+     * Constructs the word ladder from the start word, end word, position changed between the words, and the 
+     * trace of the current ladder being worked on recursively by a type of DFS search that returns the first available
+     * word ladder between the start word and the end word (NOT necessarily the shortest word ladder)
+     * @param startWord the start word for the desired word ladder
+     * @param endWord the end word for the desired word ladder
+     * @param positionChanged the most recent position change between the intermediate words forming the word ladder
+     * @param currentLadder the trace of the current ladder so we can keep track of what words were already fitted into
+     * the word ladder
+     * @return an empty ArrayList if no word ladder can be made, otherwise returns the ArrayList of strings representing
+     * the word ladder
+     */
     private ArrayList<String> makeLadder(String startWord, String endWord, int positionChanged, ArrayList<String> currentLadder){
+    	// Sets up the word ladder as a blank list
     	ArrayList<String> ladder = new ArrayList<String>();
+    	
+    	// If the start word and end word are the same, return a list with the word in it
     	if(startWord.equals(endWord)){
     		ladder.add(startWord);
     		return ladder;
     	}
     	
+    	// Otherwise we are going to add the startWord anyway to the list to begin our recursion
     	ladder.add(startWord);
     	
-    	if(differByOne(startWord, endWord)){
+    	// If the start word and end word are off by one letter only, we return a list with the start word and end word
+    	if(Dictionary.differByOneLetter(startWord, endWord)){
     		ladder.add(endWord);
     		return ladder;
     	}
@@ -101,35 +162,24 @@ public class WordLadderSolver implements Assignment4Interface {
     		}
     	}
     	
-    	//int min = dictionary.getDictionary().size();
-    	
-    	//ArrayList<ArrayList<String>> tempPaths = new ArrayList<ArrayList<String>>();
     	for(int i = 0; i < tempSolutions.size(); i++){
     		int posChanged = getPositionChanged(tempSolutions.get(i), startWord);
-    		if(/*posChanged != positionChanged &&*/ !currentLadder.contains(tempSolutions.get(i))){
+    		if(!currentLadder.contains(tempSolutions.get(i))){
     			currentLadder.addAll(ladder);
     			ArrayList<String> tempLadder = makeLadder(tempSolutions.get(i), endWord, posChanged, currentLadder);
-    			//tempPaths.add(tempLadder);
-    			if(tempLadder.get(tempLadder.size() - 1).equals(endWord)/* && tempLadder.size() == 2*/){
+    			if(tempLadder.get(tempLadder.size() - 1).equals(endWord)){
     				ladder.addAll(tempLadder);
     				return ladder;
     			}
-    			//currentLadder.removeAll(ladder);
     		}
     	}
     	
-    	/*for(int j = 0; j < tempPaths.size(); j++){
-    		if(tempPaths.get(j).size() < min){
-    			min = tempPaths.get(j).size();
-    			ladder = tempPaths.get(j);
-    		}
-    	}*/
     	return ladder;
     }
     
     private boolean differByOne(String one, String two){
     	int distance = 0;
-    	for(int i = 0; i < WORD_SIZE; i++){
+    	for(int i = 0; i < Dictionary.WORD_SIZE; i++){
     		if(one.charAt(i) != two.charAt(i)){
     			distance++;
     		}
@@ -143,7 +193,7 @@ public class WordLadderSolver implements Assignment4Interface {
     }
     
     private int getPositionChanged(String one, String two){
-    	for(int i = 0; i < WORD_SIZE; i++){
+    	for(int i = 0; i < Dictionary.WORD_SIZE; i++){
     		if(one.charAt(i) != two.charAt(i)){
     			return i;
     		}
@@ -155,7 +205,7 @@ public class WordLadderSolver implements Assignment4Interface {
     	ArrayList<Integer> distances = new ArrayList<Integer>();
     	for(int i = 0; i < list.size(); i++){
     		int tempDistance = 0;
-    		for(int j = 0; j < WORD_SIZE; j++){
+    		for(int j = 0; j < Dictionary.WORD_SIZE; j++){
     			if(list.get(i).charAt(j) != endWord.charAt(j)){
     				tempDistance++;
     			}

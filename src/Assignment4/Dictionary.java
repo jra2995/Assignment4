@@ -14,7 +14,7 @@ public class Dictionary {
 	/**
 	 * Represents all word lengths in the dictionary
 	 */
-	private static final int WORD_SIZE = 5;
+	public static final int WORD_SIZE = 5;
 	
 	/**
 	 * Holds the words of the dictionary as a list of String nodes

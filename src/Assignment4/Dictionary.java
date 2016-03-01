@@ -22,6 +22,20 @@ public class Dictionary {
 		return nodes;
 	}
 	
+	public ArrayList<ArrayList<String>> getEdges(){
+		return edges;
+	}
+	
+	public ArrayList<String> getEdgesFrom(String word){
+		if(search(word)){
+			int index = nodes.indexOf(word);
+			return edges.get(index);
+		}
+		else{
+			return null;
+		}
+	}
+	
 	public void setDictionary(ArrayList<String> newDictionary){
 		nodes = newDictionary;
 	}

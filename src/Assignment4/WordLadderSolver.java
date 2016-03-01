@@ -1,5 +1,9 @@
-/*
-    ADD YOUR HEADER HERE
+/**
+ * Classes to model a word ladder solver
+ * Solves EE422C Programming Assignment #4
+ * @author Jett Anderson and Aria Pahlavan
+ * eid: jra2995, ap44342
+ * @version 1.00 2016-03-01
  */
 
 package Assignment4;

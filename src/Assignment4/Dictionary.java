@@ -7,10 +7,11 @@ public class Dictionary {
 	private static final char LOWERCASE_A = 'a';
 	private static final int WORD_SIZE = 5;
 	private ArrayList<String> nodes;
-	private ArrayList<ArrayList<String>> edges = new ArrayList<ArrayList<String>>();
+	private ArrayList<ArrayList<String>> edges;
 	
 	public Dictionary(ArrayList<String> list) {
 		nodes = list;
+		edges = new ArrayList<ArrayList<String>>();
 		makeEdges();
 	}
 	
@@ -34,6 +35,15 @@ public class Dictionary {
 		else{
 			return null;
 		}
+		/*ArrayList<String> adjacencyList = new ArrayList<String>();
+		for(int j = 0; j < nodes.size(); j++){
+			if(!(word.equals(nodes.get(j)))){
+				if(differByOneLetter(word, nodes.get(j))){
+					adjacencyList.add(nodes.get(j));
+				}
+			}
+		}
+		return adjacencyList;*/
 	}
 	
 	public void setDictionary(ArrayList<String> newDictionary){
@@ -55,8 +65,8 @@ public class Dictionary {
 	}
 	
 	private static boolean differByOneLetter(String one, String two){
-		for(int index = 0; index < WORD_SIZE; index++){
-			for(char c = LOWERCASE_A; c < ALPHABET_SIZE; c++){
+		/*for(int index = 0; index < WORD_SIZE; index++){
+			for(char c = LOWERCASE_A; c < LOWERCASE_A + ALPHABET_SIZE; c++){
 				String regex = one.substring(0, index) + c + one.substring(index + 1, WORD_SIZE);
 				if(regex.length() == 6){
 					regex = regex.substring(0, 5);
@@ -66,6 +76,18 @@ public class Dictionary {
 				}
 			}
 		}
-		return false;
+		return false;*/
+		int distance = 0;
+    	for(int i = 0; i < WORD_SIZE; i++){
+    		if(one.charAt(i) != two.charAt(i)){
+    			distance++;
+    		}
+    	}
+    	if(distance == 1){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
 	}
 }

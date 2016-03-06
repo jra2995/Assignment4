@@ -13,12 +13,22 @@ import static junit.framework.TestCase.assertEquals;
  * @version 1.00 2016-03-01
  */
 public class whiteboxTest {
+    //test dictionary file
     ArrayList<String> myDictionary = new ArrayList<>();
+
+    //actual values of edges
     final String[] edges = { "scone", "shone" };
+
+    //test field
     Dictionary dictionary;
 
 
     @Test
+    /**
+     * This method is only used to test the graph creator method and ensures
+     * that all dictionary words are being stored asa a graph vertex and also
+     * all of their edges are only off by one letter.
+     */
     public void testGraph() {
         init();
         dictionary = new Dictionary(myDictionary);
@@ -40,6 +50,10 @@ public class whiteboxTest {
 
 
     @Test
+    /**
+     * This method is only used to test the ladder maker method and
+     * ensures that the most optimized ladder is computed.
+     */
     public void testMAkeLadder() throws NoSuchLadderException {
         testGraph();
 

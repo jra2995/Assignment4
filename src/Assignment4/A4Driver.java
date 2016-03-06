@@ -73,7 +73,7 @@ public class A4Driver
         				// Prints the resulting word ladder, one word per line if it is a correct word ladder
         				if(correct){
         					System.out.println("The following word ladder exists between " + startWord + " and " + 
-        							endWord + ":");
+        							endWord + " (" + ( result.size() -1 ) + "-Step Solution):");
         					for(int j = 0; j < result.size(); j++){
         						System.out.println(result.get(j));
         						

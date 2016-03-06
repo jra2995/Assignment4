@@ -6,7 +6,6 @@
  * eID: ap44342, jra2995
  * @version 1.00 2016-03-01
  */
-
 package Assignment4;
 
 import org.junit.Test;
@@ -22,10 +21,17 @@ import static junit.framework.Assert.assertEquals;
  */
 public class blackboxTest {
 
-    private static final String DICTIONARY_PATH = "src/A4words.dat";
-    private static final String TEST_PATH = "src/JunitTest.txt";
+    //path to the input files
+    private static final String DICTIONARY_PATH = "Junit Tests/A4words.dat";
+    private static final String TEST_PATH = "Junit Tests/JunitTest.txt";
 
     @Test
+    /**
+     * This method is only used for testing the program against basic cases
+     * to ensure the test and analyze the algorithm used.
+     *
+     * @throws NoSuchLadderException
+     */
     public void testWordLadderSolver() throws NoSuchLadderException {
         // Testing the word ladder program using a test file
 
@@ -47,10 +53,6 @@ public class blackboxTest {
             // one space in the middle and nothing after it
 
             if(!lines.get(i).matches("[a-z]{5}(((( )|(\\t))(( +)?(\\t+)?|(\\t+)?( +)?)+))[a-z]{5}")){
-                if ( !lines.get(i).equals("") ) {
-                    System.err.println("Error - Invalid Input: " + lines.get(i) + "\nInput must be in the form: " +
-                            "\"[5-letter lowercase word] [5-letter lowercase word]\".\n");
-                }
             }
             else {
                 Scanner scanner = new Scanner(lines.get(i));

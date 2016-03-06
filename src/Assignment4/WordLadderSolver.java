@@ -8,62 +8,33 @@
 
 package Assignment4;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-// do not change class name or interface it implements
 public class WordLadderSolver implements Assignment4Interface {
-    // declare class members here.
+    // Member fields:
 	/**
 	 * the dictionary graph containing the words as nodes and edges between words as differences of one letter
 	 * between words
 	 */
 	private Dictionary dictionary;
     
-	// add a constructor for this object. HINT: it would be a good idea to set up the dictionary there
+	// Constructors:
 	/**
-	 * Makes a new WordLadderSolver capable of solving a word ladder given a dictionary file name as input to 
+	 * Custom constructor - Makes a new WordLadderSolver capable of solving a word ladder given a dictionary file name as input to
 	 * initialize the dictionary. Dictionary will only consist of Dictionary.WORD_SIZE letter words, in this case
-	 * @param dictionaryName the file name for the dictionary's nodes to be initialized with 
+	 *
+	 * @param list
+	 * @throws FileNotFoundException
+	 *         if an error occurs while attempting to
+	 *         open the dictionary file.
 	 */
-	public WordLadderSolver(String dictionaryName){
-		// Allows for method-wide access of file and scanner so as to throw no errors and allow for file closing
-		// (It was giving me errors having scanner not initialized outside the try-catch
-		File file = new File(dictionaryName);
-		Scanner scan = null;
-		ArrayList<String> list = new ArrayList<String>();
-		
-		// Initializes scanner and begins to read in the dictionary input from the file if possible
-		try{
-			scan = new Scanner(file);
-			
-			// Reads in the dictionary input from the file
-			while(scan.hasNextLine()){
-				String line = scan.nextLine();
-				
-				// Makes sure that no *'d lines accidently get read in as words from the Stanford dictionary file
-				if(line.charAt(0) != '*'){
-					String word = line.substring(0, Dictionary.WORD_SIZE);
-					list.add(word);
-				}
-			}
-		}
-		catch(FileNotFoundException fnfe){
-			// If we get here, the dictionary filename was incorrect, or the file is not visible to the program hierarchy
-			fnfe.printStackTrace();
-			System.err.println("Error - File " + file + " not found.");
-		}
-		finally{
-			// Closes the file scanner if it has been read from
-			if(scan != null){
-				scan.close();
-			}
-		}
-		
-		// Creates the new dictionary object based off of the input from the dictionary text file
+	public WordLadderSolver(ArrayList<String> list) {
+
+		//initializing dictionary
+		list.trimToSize();
 		dictionary = new Dictionary(list);
+
 	}
 	
 	/**

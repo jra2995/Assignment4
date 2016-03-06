@@ -33,10 +33,14 @@ public class Dictionary {
 	 */
 	public Dictionary(ArrayList<String> list) {
 		nodes = list;
-		edges = new ArrayList<ArrayList<String>>();
+		edges = new ArrayList<>();
 		makeEdges();
 	}
-	
+
+	public ArrayList<String> getNodes() {
+		return nodes;
+	}
+
 	/**
 	 * Searches the dictionary nodes for a particular word and returns if the dictionary contains it
 	 * @param word the word to be looked for in the dictionary

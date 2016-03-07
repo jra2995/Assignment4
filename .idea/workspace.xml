@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1ef4a4b-b8a6-4e02-98e5-f0eef885ed05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChallengingTest.txt" afterPath="$PROJECT_DIR$/ChallengingTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assignment4/A4Driver.java" afterPath="$PROJECT_DIR$/src/Assignment4/A4Driver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assignment4/InvalidInputTest.java" afterPath="$PROJECT_DIR$/src/Assignment4/InvalidInputTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assignment4/WordLadderSolver.java" afterPath="$PROJECT_DIR$/src/Assignment4/WordLadderSolver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assignment4/blackboxTest.java" afterPath="$PROJECT_DIR$/src/Assignment4/blackboxTest.java" />
     </list>
     <ignored path="Project4_WordLetters.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="A4Driver.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="A4Driver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assignment4/A4Driver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12522046">
+            <state vertical-scroll-proportion="0.0">
               <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="41" selection-end-column="93" />
               <folding />
             </state>
@@ -73,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InvalidInputTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InvalidInputTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assignment4/InvalidInputTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.6895943">
+              <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -305,7 +299,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.A4Driver">
+  <component name="RunManager" selected="JUnit.InvalidInputTest.testInvalidPath">
     <configuration default="false" name="A4Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -340,32 +334,6 @@
       <option name="MAIN_CLASS_NAME" value="Assignment4.BlackBoxTest" />
       <option name="METHOD_NAME" value="testWordLadderSolver" />
       <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="BlackBoxTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="Assignment4.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="Assignment4" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="Assignment4" />
-      <option name="MAIN_CLASS_NAME" value="Assignment4.BlackBoxTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -418,6 +386,32 @@
       <option name="MAIN_CLASS_NAME" value="Assignment4.InvalidInputTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="InvalidInputTest.testInvalidPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Assignment4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Assignment4" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="Assignment4" />
+      <option name="MAIN_CLASS_NAME" value="Assignment4.InvalidInputTest" />
+      <option name="METHOD_NAME" value="testInvalidPath" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -630,17 +624,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.A4Driver" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.BlackBoxTest.testWordLadderSolver" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.BlackBoxTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.InvalidInputTest.testInvalidInput" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.InvalidInputTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.InvalidInputTest.testInvalidInput" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.InvalidInputTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.InvalidInputTest.testInvalidPath" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.A4Driver" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.InvalidInputTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.InvalidInputTest.testInvalidInput" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.BlackBoxTest.testWordLadderSolver" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.BlackBoxTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.InvalidInputTest.testInvalidPath" />
+        <item index="1" class="java.lang.String" itemvalue="Application.A4Driver" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.InvalidInputTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.InvalidInputTest.testInvalidInput" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.BlackBoxTest.testWordLadderSolver" />
       </list>
     </recent_temporary>
   </component>
@@ -658,12 +652,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="InvalidInputTest - 2016.03.06 at 01h 17m 40s.xml">
-      <configuration name="InvalidInputTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="InvalidInputTest - 2016.03.06 at 01h 18m 05s.xml">
-      <configuration name="InvalidInputTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="InvalidInputTest - 2016.03.06 at 01h 18m 31s.xml">
       <configuration name="InvalidInputTest" configurationId="JUnit" />
     </history-entry>
@@ -672,6 +660,12 @@
     </history-entry>
     <history-entry file="InvalidInputTest - 2016.03.07 at 15h 27m 18s.xml">
       <configuration name="InvalidInputTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="InvalidInputTest_testInvalidInputPath - 2016.03.07 at 17h 49m 55s.xml">
+      <configuration name="InvalidInputTest.testInvalidInputPath" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="InvalidInputTest_testInvalidInputPath - 2016.03.07 at 17h 52m 05s.xml">
+      <configuration name="InvalidInputTest.testInvalidInputPath" configurationId="JUnit" />
     </history-entry>
     <history-entry file="blackboxTest - 2016.03.05 at 21h 02m 09s.xml">
       <configuration name="blackboxTest" configurationId="JUnit" />
@@ -1097,7 +1091,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/Assignment4/blackboxTest.class">
+    <entry file="file://$PROJECT_DIR$/bin/Assignment4/BlackBoxTest.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1111,14 +1105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="14" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assignment4/InvalidInputTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1154,8 +1140,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assignment4/A4Driver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12522046">
+        <state vertical-scroll-proportion="0.0">
           <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="41" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assignment4/InvalidInputTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6895943">
+          <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
           <folding />
         </state>
       </provider>

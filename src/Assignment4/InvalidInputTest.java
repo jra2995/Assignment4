@@ -28,7 +28,7 @@ public class InvalidInputTest {
      *
      * @throws NoSuchLadderException
      */
-    public void testInvalidInputTest() throws NoSuchLadderException {
+    public void testInvalidInput() throws NoSuchLadderException {
         // Testing the word ladder program using a test file
 
         // Create a file opener object

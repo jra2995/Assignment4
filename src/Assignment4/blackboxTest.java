@@ -19,7 +19,7 @@ import static junit.framework.Assert.assertEquals;
  * Project4_WordLetters
  * Created by Aria Pahlavan on Mar 2016.
  */
-public class blackboxTest {
+public class BlackBoxTest {
 
     //path to the input files
     private static final String DICTIONARY_PATH = "Junit Tests/A4words.dat";

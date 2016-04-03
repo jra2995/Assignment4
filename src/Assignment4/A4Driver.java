@@ -84,8 +84,16 @@ public class A4Driver
     			}
     		}
     	}
+		catch (StackOverflowError s) {
+			// If we get here, then the stack size is not large enough
+			// thus requesting the user to increase the stack size
+			System.err.println("Please increase the stack size and retry.");
+			if(scanner != null){
+				scanner.close();
+			}
+		}
         catch (ArrayIndexOutOfBoundsException a){
-        	// If we get here, one of the command line arguments for the filenames is missing from the run
+        	// If we get here, one of the command line arguments for the file-names is missing from the run
         	// configuration or entered incorrectly from command line
         	System.err.println("One of the command line file arguments is missing.\nClosing program.");
         	if(scanner != null){

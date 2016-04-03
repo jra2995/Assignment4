@@ -18,7 +18,9 @@ import static junit.framework.TestCase.assertEquals;
 public class InvalidInputTest {
     //path to the input files
     private static final String DICTIONARY_PATH = "Junit Tests/A4words.dat";
-    private static final String INVALID_TEST_PATH = "Junit Tests/JunitInvalidTest.txt";
+    private static final String TEST_PATH = "Junit Tests/JunitInvalidTest.txt";
+    private static final String INVALID_DICTIONARY_PATH = "just/some/invalid/dictionary.txt";
+    private static final String INVALID_TEST_PATH = "just/some/invalid/test.txt";
 
 
     @Test
@@ -28,8 +30,7 @@ public class InvalidInputTest {
      *
      * @throws NoSuchLadderException
      */
-    public void testInvalidInputTest() throws NoSuchLadderException {
-        // Testing the word ladder program using a test file
+    public void testInvalidInput() throws NoSuchLadderException {
 
         // Create a file opener object
         FileReader fileReader = new FileReader();
@@ -38,7 +39,7 @@ public class InvalidInputTest {
         WordLadderSolver wordLadderSolver = new WordLadderSolver(fileReader.readDictionaryFile(DICTIONARY_PATH));
 
         //getting the list of words to be matched
-        ArrayList<String> lines = fileReader.readTestFile(INVALID_TEST_PATH);
+        ArrayList<String> lines = fileReader.readTestFile(TEST_PATH);
 
 
         // Cycles through input test cases and make sure they are all invalid
@@ -59,4 +60,21 @@ public class InvalidInputTest {
 
     }
 
+
+    @Test
+    /**
+     * This method ensures that an invalid path error is caught and reported properly.
+     *
+     * @throws NoSuchLadderException
+     */
+    public void testInvalidPath() throws NoSuchLadderException {
+        // Create a file opener object
+        FileReader fileReader = new FileReader();
+
+        // Testing readDictionaryFile()
+        fileReader.readDictionaryFile(INVALID_DICTIONARY_PATH);
+
+        // Testing readTestFile()
+        fileReader.readTestFile(INVALID_TEST_PATH);
+    }
 }

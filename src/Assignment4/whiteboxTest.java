@@ -12,7 +12,7 @@ import static junit.framework.TestCase.assertEquals;
  * eID: ap44342, jra2995
  * @version 1.00 2016-03-01
  */
-public class whiteboxTest {
+public class WhiteBoxTest {
     //test dictionary file
     ArrayList<String> myDictionary = new ArrayList<>();
 

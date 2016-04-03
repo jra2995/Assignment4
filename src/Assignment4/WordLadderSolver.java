@@ -54,7 +54,7 @@ public class WordLadderSolver implements Assignment4Interface{
      * @returns an ArrayList representing the word ladder if possible
      * @throws NoSuchLadderException if no word ladder can be made between the two start and end words
      */
-    public ArrayList<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException
+    public ArrayList<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException, StackOverflowError
     {
     	ArrayList<String> ladder = new ArrayList<String>();
     	ladder = makeLadder(startWord, endWord, ladder);

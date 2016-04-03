@@ -11,7 +11,7 @@ package Assignment4;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class WordLadderSolver implements Assignment4Interface {
+public class WordLadderSolver implements Assignment4Interface{
     // Member fields:
 	/**
 	 * the dictionary graph containing the words as nodes and edges between words as differences of one letter
@@ -57,7 +57,7 @@ public class WordLadderSolver implements Assignment4Interface {
     public ArrayList<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException
     {
     	ArrayList<String> ladder = new ArrayList<String>();
-    	ladder = makeLadder(startWord, endWord, 0, ladder);
+    	ladder = makeLadder(startWord, endWord, ladder);
     	ladder = correctWordLadder(ladder);
     	
     	// If no ladder can be made, i.e. ladder size is 0, throw the no such ladder exception
@@ -107,13 +107,12 @@ public class WordLadderSolver implements Assignment4Interface {
      * word ladder between the start word and the end word (NOT necessarily the shortest word ladder)
      * @param startWord the start word for the desired word ladder
      * @param endWord the end word for the desired word ladder
-     * @param positionChanged the most recent position change between the intermediate words forming the word ladder
      * @param currentLadder the trace of the current ladder so we can keep track of what words were already fitted into
      * the word ladder
      * @return an empty ArrayList if no word ladder can be made, otherwise returns the ArrayList of strings representing
      * the word ladder
      */
-    private ArrayList<String> makeLadder(String startWord, String endWord, int positionChanged, ArrayList<String> currentLadder){
+    private ArrayList<String> makeLadder(String startWord, String endWord, ArrayList<String> currentLadder){
     	// Sets up the word ladder as a blank list
     	ArrayList<String> ladder = new ArrayList<String>();
     	
@@ -121,7 +120,7 @@ public class WordLadderSolver implements Assignment4Interface {
     	if(startWord.equals(endWord)){
     		ladder.add(startWord);
     		return ladder;
-    	}
+    	}u
     	
     	// Otherwise we are going to add the startWord anyway to the list to begin our recursion
     	ladder.add(startWord);
@@ -154,7 +153,7 @@ public class WordLadderSolver implements Assignment4Interface {
     		if(!currentLadder.contains(tempSolutions.get(i))){
     			// Recurses using the given word after adding the word to the in process ladder
     			currentLadder.addAll(ladder);
-    			ArrayList<String> tempLadder = makeLadder(tempSolutions.get(i), endWord, posChanged, currentLadder);
+    			ArrayList<String> tempLadder = makeLadder(tempSolutions.get(i), endWord, currentLadder);
     			
     			// If the ladder has returned from recursion with the last word being the end word, we have a correct 
     			// ladder that we need to start adding the pieces together with
